@@ -1,0 +1,75 @@
+{
+  "name": "code-points",
+  "version": "0.0.0",
+  "description": "Get the code points of each character in the string",
+  "main": "./dist/code-points-cjs.js",
+  "bin": "cli.js",
+  "files": [
+    "cli.js",
+    "dist/code-points-cjs.js",
+    "LICENSE.md"
+  ],
+  "scripts": {
+    "test": "gulp test",
+    "coverage": "istanbul cover test.js",
+    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
+  },
+  "author": {
+    "name": "Shinnosuke Watanabe",
+    "email": "snnskwtnb@gmail.com",
+    "url": "https://github.com/shinnn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shinnn/code-points.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shinnn/code-points.js/issues"
+  },
+  "homepage": "https://github.com/shinnn/code-points.js",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/shinnn/code-points.js/blob/master/LICENSE"
+    }
+  ],
+  "keywords": [
+    "code",
+    "point",
+    "code-point",
+    "string",
+    "char",
+    "character",
+    "unicode",
+    "utf16",
+    "utf-16",
+    "codepointat",
+    "surrogate",
+    "plane",
+    "browser",
+    "client-side"
+  ],
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "code-point": "^1.0.1",
+    "get-stdin": "^3.0.0",
+    "minimist": "^1.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-footer": "^1.0.5",
+    "gulp-header": "^1.1.1",
+    "gulp-jscs": "^1.1.2",
+    "gulp-jshint": "^1.8.5",
+    "gulp-jsonlint": "^0.1.0",
+    "gulp-load-plugins": "^0.7.0",
+    "gulp-rename": "^1.2.0",
+    "istanbul": "^0.3.2",
+    "istanbul-coveralls": "^1.0.1",
+    "jshint-stylish": "^1.0.0",
+    "merge-stream": "^0.1.6",
+    "rimraf": "^2.2.8",
+    "tape": "^3.0.0",
+    "to-camel-case": "^0.2.1"
+  }
+}

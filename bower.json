@@ -1,0 +1,46 @@
+{
+  "name": "code-points",
+  "version": "1.0.0",
+  "description": "Get the code points of each character in the string",
+  "keywords": [
+    "code",
+    "point",
+    "code-point",
+    "string",
+    "char",
+    "character",
+    "unicode",
+    "utf16",
+    "utf-16",
+    "codepointat",
+    "surrogate",
+    "plane"
+  ],
+  "main": "dist/code-points.js",
+  "homepage": "https://github.com/shinnn/code-points.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shinnn/code-points.js.git"
+  },
+  "authors": [
+    {
+      "name": "Shinnosuke Watanabe",
+      "url": "https://github.com/shinnn"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "code-point": "~1.0.1"
+  },
+  "ignore": [
+    "**/.*",
+    "*.js",
+    "*.yml",
+    "components",
+    "component.json",
+    "dist/code-points-cjs.js",
+    "node_modules",
+    "package.json",
+    "src"
+  ]
+}

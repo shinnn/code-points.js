@@ -1,0 +1,28 @@
+{
+  "name": "code-points",
+  "version": "1.0.0",
+  "repository": "shinnn/code-points.js",
+  "description": "Get the code points of each character in the string",
+  "keywords": [
+    "code",
+    "point",
+    "code-point",
+    "string",
+    "char",
+    "character",
+    "unicode",
+    "utf16",
+    "utf-16",
+    "codepointat",
+    "surrogate",
+    "plane"
+  ],
+  "main": "dist/code-points-cjs.js",
+  "scripts": [
+    "dist/code-points-cjs.js"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "shinnn/code-point.js": "*"
+  }
+}
