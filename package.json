@@ -1,6 +1,6 @@
 {
   "name": "code-points",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Get the code points of each character in the string",
   "main": "./dist/code-points-cjs.js",
   "bin": "cli.js",
