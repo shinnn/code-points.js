@@ -7,7 +7,7 @@ var test = require('tape');
 var pkg = require('./package.json');
 
 test('codePoints()', function(t) {
-  t.plan(5);
+  t.plan(6);
 
   t.deepEqual(
     codePoints('01'), [48, 49],
@@ -17,6 +17,11 @@ test('codePoints()', function(t) {
   t.deepEqual(
     codePoints('0𧌠嶲0𧏨'), [48, 160544, 195060, 48, 160744],
     'should return code points of the string considering surrogate pairs.'
+  );
+
+  t.deepEqual(
+    codePoints('0𧌠嶲0嶲', {unique: true}), [48, 160544, 195060],
+    'should return code points of the string without duplication, using `unique` option.'
   );
 
   t.deepEqual(
@@ -36,7 +41,7 @@ test('codePoints()', function(t) {
 });
 
 test('"code-points" command inside a TTY context', function(t) {
-  t.plan(11);
+  t.plan(14);
 
   var cmd = function(args) {
     var cp = spawn('node', [pkg.bin].concat(args), {
@@ -49,6 +54,21 @@ test('"code-points" command inside a TTY context', function(t) {
 
   cmd(['0']).stdout.on('data', function(output) {
     t.strictEqual(output, '48\n', 'should print code points of string.');
+  });
+
+  cmd(['00', '--unique']).stdout.on('data', function(output) {
+    t.strictEqual(
+      output, '48\n',
+      'should print code points of string without duplication, using --unique option.'
+    );
+  });
+
+  cmd(['\\0\\0', '--uniq']).stdout.on('data', function(output) {
+    t.strictEqual(output, '92,48\n', 'should accept --uniq alias.');
+  });
+
+  cmd(['aåa', '-u']).stdout.on('data', function(output) {
+    t.strictEqual(output, '97,229\n', 'should accept -u alias.');
   });
 
   var fileCodePoints = '42,32,116,101,120,116,61,97,117,116,111,10\n';

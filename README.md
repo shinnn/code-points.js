@@ -44,9 +44,10 @@ var codePoints = require('shinnn/code-points.js');
 
 ## API
 
-### codePoints(*str*)
+### codePoints(*str*, *option*)
 
 *str*: `String`  
+*option*: `Object`  
 Return: `Array` of `Number`
 
 It returns the code points of each character in the string as an array.
@@ -57,6 +58,18 @@ It returns the code points of each character in the string as an array.
 codePoints('\udada'); //=> [56026]
 codePoints('\udfdf\udada\udada'); //=> [57311, 56026, 56026]
 codePoints('\udada\udfdf\udada'); //=> [814047, 56026]
+```
+
+#### option.unique
+
+Type: `Boolean`  
+Default: `false`
+
+Removes duplicates from result.
+
+```javascript
+codePoints('banana'); //=> [98, 97, 110, 97, 110, 97]
+codePoints('banana', {unique: true}); //=> [98,97,110]
 ```
 
 ## CLI
@@ -75,9 +88,10 @@ Usage2: code-points --file <file path>
 Usage3: cat <file path> | code-points
 
 Options:
---file,    -f    Use a file as an input
---help,    -h    Print usage information
---version, -v    Print version
+--unique, --uniq, -u  Remove duplicates from result
+--file,           -f  Use a file as an input
+--help,           -h  Print usage information
+--version,        -v  Print version
 ```
 
 It print the code points splitted by commas.

@@ -8,12 +8,14 @@ var fs = require('fs');
 
 var argv = require('minimist')(process.argv.slice(2), {
   alias: {
+    u: 'unique',
+    uniq: 'unique',
     f: 'file',
     h: 'help',
     v: 'version'
   },
   string: ['file'],
-  boolean: ['help', 'version']
+  boolean: ['unique', 'help', 'version']
 });
 var pkg = require('./package.json');
 
@@ -29,15 +31,16 @@ function help() {
     'Usage3: cat <file path> | ' + pkg.name,
     '',
     'Options:',
-    chalk.yellow('--file,    -f  ') + '  Use a file as an input',
-    chalk.yellow('--help,    -h  ') + '  Print usage information',
-    chalk.yellow('--version, -v  ') + '  Print version',
+    chalk.yellow('--unique, --uniq, -u') + '  Remove duplicates from result',
+    chalk.yellow('--file,           -f') + '  Use a file as an input',
+    chalk.yellow('--help,           -h') + '  Print usage information',
+    chalk.yellow('--version,        -v') + '  Print version',
     ''
   ].join('\n'));
 }
 
 function run(str) {
-  var points = require('./')('' + str);
+  var points = require('./')('' + str, {unique: argv.unique});
   console.log(points.join(','));
 }
 
