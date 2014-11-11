@@ -14,7 +14,7 @@ var argv = require('minimist')(process.argv.slice(2), {
     h: 'help',
     v: 'version'
   },
-  string: ['file'],
+  string: ['_', 'file'],
   boolean: ['unique', 'help', 'version']
 });
 var pkg = require('./package.json');
@@ -40,7 +40,7 @@ function help() {
 }
 
 function run(str) {
-  var points = require('./')('' + str, {unique: argv.unique});
+  var points = require('./')(str, {unique: argv.unique});
   console.log(points.join(','));
 }
 
@@ -69,5 +69,5 @@ if (argv.version) {
     run(argv._[0]);
   }
 } else {
-  require('get-stdin').buffer(run);
+  require('get-stdin')(run);
 }

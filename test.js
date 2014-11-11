@@ -1,4 +1,3 @@
-/*jshint unused:true */
 'use strict';
 
 var codePoints = require('./');
@@ -10,7 +9,7 @@ test('codePoints()', function(t) {
   t.plan(6);
 
   t.deepEqual(
-    codePoints('01'), [48, 49],
+    codePoints('10'), [49, 48],
     'should return code points of the string.'
   );
 
