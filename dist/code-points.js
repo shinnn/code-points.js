@@ -2,21 +2,20 @@
  * code-points | MIT (c) Shinnosuke Watanabe
  * https://github.com/shinnn/code-points.js
 */
-!function() {
-'use strict';
-
 function codePoints(str, option) {
+  'use strict';
+
   option = option || {unique: false};
 
   if (typeof str !== 'string') {
-    throw new TypeError(str + ' is not a string.');
+    throw new TypeError(str + ' is not a string. First argument must be a string.');
   }
 
   var result = [];
 
   var index = 0;
   while (index < str.length) {
-    var point = codePoint(str.charAt(index) + str.charAt(index + 1));
+    var point = window.codePoint(str.charAt(index) + str.charAt(index + 1));
 
     if (!(option.unique && result.indexOf(point) !== -1)) {
       result.push(point);
@@ -33,4 +32,3 @@ function codePoints(str, option) {
 }
 
 window.codePoints = codePoints;
-}();

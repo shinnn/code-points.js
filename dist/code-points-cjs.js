@@ -2,13 +2,13 @@
  * code-points | MIT (c) Shinnosuke Watanabe
  * https://github.com/shinnn/code-points.js
 */
-'use strict';
-
 function codePoints(str, option) {
+  'use strict';
+
   option = option || {unique: false};
 
   if (typeof str !== 'string') {
-    throw new TypeError(str + ' is not a string.');
+    throw new TypeError(str + ' is not a string. First argument must be a string.');
   }
 
   var result = [];
