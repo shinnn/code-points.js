@@ -12,15 +12,8 @@ var toCamelCase = require('to-camel-case');
 
 var pkg = require('./package.json');
 var bower = require('./bower.json');
-
+var banner = require('tiny-npm-license')(pkg);
 var funName = toCamelCase(pkg.name);
-
-var banner = [
-  '/*!',
-  ' * code-points | MIT (c) Shinnosuke Watanabe',
-  ' * https://github.com/shinnn/code-points.js',
-  '*/\n'
-].join('\n');
 
 var moduleExports = '\nvar codePoint = require(\'code-point\');\n' +
                     'module.exports = <%= funName %>;\n';
@@ -40,10 +33,9 @@ gulp.task('clean', rimraf.bind(null, 'dist'));
 gulp.task('build', ['lint', 'clean'], function() {
   return mergeStream(
     gulp.src(['src/*.js'])
-      .pipe($.header(banner + '!function() {\n', {pkg: pkg}))
-      .pipe($.footer('\nwindow.<%= funName %> = <%= funName %>;\n}();\n', {
-        funName: funName
-      }))
+      .pipe($.header(banner, {pkg: pkg}))
+      .pipe($.footer('\nwindow.' + funName + ' = ' + funName + ';\n'))
+      .pipe($.replace('codePoint(', 'window.codePoint('))
       .pipe($.rename(bower.main))
       .pipe(gulp.dest('')),
     gulp.src(['src/*.js'])
