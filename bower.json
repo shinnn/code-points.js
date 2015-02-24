@@ -34,12 +34,10 @@
   "ignore": [
     "**/.*",
     "*.js",
+    "*.json",
     "*.yml",
-    "components",
-    "component.json",
     "dist/code-points-cjs.js",
     "node_modules",
-    "package.json",
     "src"
   ]
 }
