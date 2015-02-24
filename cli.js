@@ -4,8 +4,6 @@
 */
 'use strict';
 
-var fs = require('fs');
-
 var argv = require('minimist')(process.argv.slice(2), {
   alias: {
     u: 'unique',
@@ -17,24 +15,25 @@ var argv = require('minimist')(process.argv.slice(2), {
   string: ['_', 'file'],
   boolean: ['unique', 'help', 'version']
 });
-var pkg = require('./package.json');
 
 function help() {
-  var chalk = require('chalk');
+  var sumUp = require('sum-up');
+  var yellow = require('chalk').yellow;
+
+  var pkg = require('./package.json');
 
   console.log([
-    chalk.cyan(pkg.name) + chalk.gray(' v' + pkg.version),
-    pkg.description,
+    sumUp(pkg),
     '',
     'Usage1: ' + pkg.name + ' <string>',
     'Usage2: ' + pkg.name + ' --file <file path>',
     'Usage3: cat <file path> | ' + pkg.name,
     '',
     'Options:',
-    chalk.yellow('--unique, --uniq, -u') + '  Remove duplicates from result',
-    chalk.yellow('--file,           -f') + '  Use a file as an input',
-    chalk.yellow('--help,           -h') + '  Print usage information',
-    chalk.yellow('--version,        -v') + '  Print version',
+    yellow('--unique, --uniq, -u') + '  Remove duplicates from result',
+    yellow('--file,           -f') + '  Use a file as an input',
+    yellow('--help,           -h') + '  Print usage information',
+    yellow('--version,        -v') + '  Print version',
     ''
   ].join('\n'));
 }
@@ -51,11 +50,13 @@ function stderrWriteLn(msg) {
 }
 
 if (argv.version) {
-  console.log(pkg.version);
+  console.log(require('./package.json').version);
 } else if (argv.help) {
   help();
 } else if (process.stdin.isTTY) {
   if (argv.file) {
+    var fs = require('fs');
+
     if (!fs.existsSync(argv.file)) {
       stderrWriteLn('Cannot read the file ' + argv.file + '.');
     } else if (!fs.statSync(argv.file).isFile()) {
