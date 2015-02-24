@@ -50,7 +50,7 @@
     "client-side"
   ],
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "code-point": "^1.0.1",
     "get-stdin": "^3.0.0",
     "minimist": "^1.1.0"
