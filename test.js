@@ -1,40 +1,49 @@
 'use strict';
 
-var codePoints = require('./');
 var spawn = require('child_process').spawn;
+
+var codePoints = require('./');
 var test = require('tape');
 var pkg = require('./package.json');
 
 test('codePoints()', function(t) {
-  t.plan(6);
+  t.plan(7);
+
+  t.equal(codePoints.name, 'codePoints', 'should have a function name.');
 
   t.deepEqual(
-    codePoints('10'), [49, 48],
+    codePoints('10'),
+    [49, 48],
     'should return code points of the string.'
   );
 
   t.deepEqual(
-    codePoints('0𧌠嶲0𧏨'), [48, 160544, 195060, 48, 160744],
+    codePoints('0𧌠嶲0𧏨'),
+    [48, 160544, 195060, 48, 160744],
     'should return code points of the string considering surrogate pairs.'
   );
 
   t.deepEqual(
-    codePoints('0𧌠嶲0嶲', {unique: true}), [48, 160544, 195060],
+    codePoints('0𧌠嶲0嶲', {unique: true}),
+    [48, 160544, 195060],
     'should return code points of the string without duplication, using `unique` option.'
   );
 
   t.deepEqual(
-    codePoints(''), [],
+    codePoints(''),
+    [],
     'should return an empty array when it takes an empty string.'
   );
 
   t.throws(
-    codePoints.bind(null), /not a string/,
+    codePoints.bind(null),
+    /TypeError.*not a string.*must be a string/,
     'should throw an error when it takes no arguments.'
   );
 
   t.throws(
-    codePoints.bind(null, ['a', 'b']), /not a string/,
+    codePoints.bind(null, ['a', 'b']),
+    /TypeError.*not a string.*must be a string/,
     'should throw an error when it takes a non-string argument.'
   );
 });
@@ -74,7 +83,8 @@ test('"code-points" command inside a TTY context', function(t) {
 
   cmd(['--file', '.gitattributes']).stdout.on('data', function(output) {
     t.strictEqual(
-      output, fileCodePoints,
+      output,
+      fileCodePoints,
       'should print code points of the file content, using --file flag.'
     );
   });
@@ -88,7 +98,7 @@ test('"code-points" command inside a TTY context', function(t) {
   });
 
   cmd(['-v']).stdout.on('data', function(output) {
-    t.strictEqual(output, pkg.version + '\n', 'should accept -v alias.');
+    t.strictEqual(output, pkg.version + '\n', 'should use -v as an alias of --version.');
   });
 
   cmd(['--help']).stdout.on('data', function(output) {
@@ -96,7 +106,7 @@ test('"code-points" command inside a TTY context', function(t) {
   });
 
   cmd(['-h']).stdout.on('data', function(output) {
-    t.ok(/Usage/.test(output), 'should accept --help alias.');
+    t.ok(/Usage/.test(output), 'should use -h as an alias of --help.');
   });
 
   cmd([]).stdout.on('data', function(output) {
