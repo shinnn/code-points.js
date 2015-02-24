@@ -1,16 +1,17 @@
 /*jshint unused:true */
 'use strict';
 
+var pkg = require('./package.json');
+
 var spawn = require('child_process').spawn;
 
-var $ = require('gulp-load-plugins')();
+var $ = require('gulp-load-plugins')({config: pkg});
 var gulp = require('gulp');
 var mergeStream = require('merge-stream');
 var rimraf = require('rimraf');
 var stylish = require('jshint-stylish');
 var toCamelCase = require('to-camel-case');
 
-var pkg = require('./package.json');
 var bower = require('./bower.json');
 var banner = require('tiny-npm-license')(pkg);
 var funName = toCamelCase(pkg.name);
@@ -19,13 +20,16 @@ var moduleExports = '\nvar codePoint = require(\'code-point\');\n' +
                     'module.exports = <%= funName %>;\n';
 
 gulp.task('lint', function() {
-  gulp.src(['{,src/}*.js'])
-    .pipe($.jshint())
-    .pipe($.jshint.reporter(stylish))
-    .pipe($.jscs('.jscs.json'));
-  gulp.src('*.json')
-    .pipe($.jsonlint())
-    .pipe($.jsonlint.reporter());
+  return mergeStream(
+    gulp.src('{,src/}*.js')
+      .pipe($.jscs(pkg.jscsConfig))
+      .pipe($.jshint())
+      .pipe($.jshint.reporter(stylish))
+      .pipe($.jshint.reporter('fail')),
+    gulp.src('*.json')
+      .pipe($.jsonlint())
+      .pipe($.jsonlint.reporter())
+  );
 });
 
 gulp.task('clean', rimraf.bind(null, 'dist'));
@@ -36,14 +40,13 @@ gulp.task('build', ['lint', 'clean'], function() {
       .pipe($.header(banner, {pkg: pkg}))
       .pipe($.footer('\nwindow.' + funName + ' = ' + funName + ';\n'))
       .pipe($.replace('codePoint(', 'window.codePoint('))
-      .pipe($.rename(bower.main))
-      .pipe(gulp.dest('')),
+      .pipe($.rename(bower.main)),
     gulp.src(['src/*.js'])
       .pipe($.header(banner, {pkg: pkg}))
       .pipe($.footer(moduleExports, {funName: funName}))
       .pipe($.rename(pkg.main))
-      .pipe(gulp.dest(''))
-  );
+  )
+    .pipe(gulp.dest(''));
 });
 
 gulp.task('test', ['build'], function(cb) {
