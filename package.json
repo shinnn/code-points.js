@@ -13,18 +13,9 @@
     "coverage": "istanbul cover test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
-  "author": {
-    "name": "Shinnosuke Watanabe",
-    "email": "snnskwtnb@gmail.com",
-    "url": "https://github.com/shinnn"
-  },
+  "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "repository": "shinnn/code-points.js",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/shinnn/code-points.js/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "keywords": [
     "code",
     "point",
@@ -45,25 +36,25 @@
     "chalk": "^1.0.0",
     "code-point": "^1.0.1",
     "get-stdin": "^4.0.1",
-    "minimist": "^1.1.0",
+    "minimist": "^1.1.1",
     "sum-up": "^1.0.1"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-footer": "^1.0.5",
     "gulp-header": "^1.2.2",
-    "gulp-jscs": "^1.4.0",
-    "gulp-jshint": "^1.9.2",
+    "gulp-jscs": "^1.6.0",
+    "gulp-jshint": "^1.11.0",
     "gulp-jsonlint": "^1.0.1",
-    "gulp-load-plugins": "^0.8.0",
-    "gulp-rename": "^1.2.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.3",
-    "istanbul": "^0.3.6",
-    "istanbul-coveralls": "^1.0.1",
-    "jshint-stylish": "^1.0.1",
+    "istanbul": "^0.3.14",
+    "istanbul-coveralls": "^1.0.2",
+    "jshint-stylish": "^2.0.0",
     "merge-stream": "^0.1.7",
-    "rimraf": "^2.2.8",
-    "tape": "^3.5.0",
+    "rimraf": "^2.3.4",
+    "tape": "^4.0.0",
     "tiny-npm-license": "^1.0.0",
     "to-camel-case": "^0.2.1"
   },
