@@ -12,7 +12,6 @@ var rimraf = require('rimraf');
 var stylish = require('jshint-stylish');
 var toCamelCase = require('to-camel-case');
 
-var bower = require('./bower.json');
 var banner = require('tiny-npm-license')(pkg);
 var funName = toCamelCase(pkg.name);
 
@@ -36,11 +35,6 @@ gulp.task('clean', rimraf.bind(null, 'dist'));
 
 gulp.task('build', ['lint', 'clean'], function() {
   return mergeStream(
-    gulp.src(['src/*.js'])
-      .pipe($.header(banner, {pkg: pkg}))
-      .pipe($.footer('\nwindow.' + funName + ' = ' + funName + ';\n'))
-      .pipe($.replace('codePoint(', 'window.codePoint('))
-      .pipe($.rename(bower.main)),
     gulp.src(['src/*.js'])
       .pipe($.header(banner, {pkg: pkg}))
       .pipe($.footer(moduleExports, {funName: funName}))
