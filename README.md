@@ -2,7 +2,6 @@
 
 [![npm version](https://img.shields.io/npm/v/code-points.svg)](https://www.npmjs.com/package/code-points)
 [![Build Status](https://travis-ci.com/shinnn/code-points.js.svg?branch=master)](https://travis-ci.com/shinnn/code-points.js)
-[![Build status](https://ci.appveyor.com/api/projects/status/rojbdyosyc3055ct?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/code-points-js)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/code-points.js.svg)](https://coveralls.io/github/shinnn/code-points.js)
 
 Get the [UTF-16](https://wikipedia.org/wiki/UTF-16)-encoded code points of each character in the string
@@ -85,6 +84,6 @@ yields:
 
 ## License
 
-Copyright (c) 2014 - 2018 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2014 - 2019 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](https://github.com/shinnn/code-points/blob/master/LICENSE).
