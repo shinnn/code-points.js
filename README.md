@@ -46,42 +46,6 @@ codePoints('banana'); //=> [98, 97, 110, 97, 110, 97]
 codePoints('banana', {unique: true}); //=> [98,97,110]
 ```
 
-## CLI
-
-You can use this module as a CLI tool by installing it [globally](https://docs.npmjs.com/files/folders#global-installation).
-
-```
-npm install -g code-points
-```
-
-### Usage
-
-```
-Usage1: code-points <string>
-Usage2: code-points --file <file path>
-Usage3: cat <file path> | code-points
-
-Options:
---unique, --uniq, -u  Remove duplicates from result
---file,           -f  Use a file as an input
---help,           -h  Print usage information
---version,        -v  Print version
-```
-
-It print the code points splitted by commas.
-
-### Example
-
-```
-code-points "0123 abcd"
-```
-
-yields:
-
-```
-48,49,50,51,32,97,98,99,100
-```
-
 ## License
 
 Copyright (c) 2014 - 2019 [Shinnosuke Watanabe](https://github.com/shinnn)

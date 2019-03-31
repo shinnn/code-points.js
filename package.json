@@ -3,9 +3,7 @@
   "version": "2.0.0-0",
   "description": "Get the code points of each character in the string",
   "main": "dist/code-points-cjs.js",
-  "bin": "cli.js",
   "files": [
-    "cli.js",
     "dist/code-points-cjs.js"
   ],
   "scripts": {
@@ -28,16 +26,10 @@
     "utf-16",
     "codepointat",
     "surrogate",
-    "plane",
-    "browser",
-    "client-side"
+    "plane"
   ],
   "dependencies": {
-    "chalk": "^1.0.0",
-    "code-point": "^1.0.1",
-    "get-stdin": "^4.0.1",
-    "minimist": "^1.1.1",
-    "sum-up": "^1.0.1"
+    "code-point": "^1.0.1"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
