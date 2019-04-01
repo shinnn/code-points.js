@@ -1,6 +1,6 @@
 {
   "name": "code-points",
-  "version": "2.0.0-0",
+  "version": "2.0.0-1",
   "description": "Get the code points of each character in the string",
   "main": "dist/code-points-cjs.js",
   "files": [
